@@ -1,0 +1,20 @@
+.movies-section{
+    background: linear-gradient(0deg, rgba(255, 0, 0, 0.445), rgba(2, 0, 1, 0.521)), url('../../images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.site-name{
+    font-family: 'Special Elite', cursive;
+    font-size: 40px;
+    font-weight: 800;
+    color: white;
+}
+.site-name-red{
+    color: red;
+}
+@media only screen and (max-width: 1000px) {
+    .movies-section{
+        background-position: right;  
+    }
+}

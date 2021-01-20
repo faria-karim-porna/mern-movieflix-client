@@ -1,0 +1,98 @@
+.link{
+    text-decoration: none !important;
+}
+.login-logout-button{
+    background-color: transparent;
+    color: red;
+    height: 40px;
+    width: 120px;
+    text-align: center;
+    padding-top: 6px;
+    border-radius: 50px;
+    font-weight: 700;
+    border: 2px solid red;
+}
+.login-logout-button:hover{
+    background-color: red;
+    color: black;
+}
+.home-section{
+    background-image: url('../../images/bg.jpg');
+    background-size: cover;
+    height: 100vh;
+    background-position: center;
+    overflow-y: hidden;
+}
+.social-media-icons{
+    /* filter: invert(1); */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    bottom: 50%;
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column !important;
+}
+.icons{
+    filter: invert(1);
+    width: 50%;
+    
+}
+
+.home-description{
+    
+    height: 80vh;
+}
+.home-description-title{
+    letter-spacing: 3px;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 400;
+}
+.home-description-text{
+    color: #ffffff;
+    font-weight: 400;
+}
+.home-button-section{
+    font-variant: small-caps;
+    color: #ffffff;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.home-button{
+    width: 50px;
+    height: 50px;
+}
+.slider-image{
+    height: 150px;
+    width: 250px;
+    background-image: url('../../images/joker.png');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    bottom: 5%;
+    left: 35%;
+    animation: animate 25s linear infinite;
+}
+@keyframes animate{
+    0%,100%
+    {
+        background-position: top;
+    }
+    45%,55%
+    {
+        background-position: bottom;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .home-section{
+        background-position: right;  
+    }
+    .home-description{
+        height: 58vh;
+    }
+    .home-text-section{
+        width: 90% !important;
+    }
+}

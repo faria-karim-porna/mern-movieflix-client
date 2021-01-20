@@ -1,0 +1,84 @@
+.cancel-icon{
+    color: red;
+}
+.modal-movie-image{
+    height: 185px !important;
+}
+.modal-image-border{
+    border-left: 1px solid red;
+    height: 175px;
+}
+.movie-title{
+    font-size: 25px;
+    color: red;
+}
+.modal-horizontal-line{
+    border-bottom: 1px solid red;
+}
+/* input[type="date"]::before{
+    color: red;
+    content: attr(placeholder) ": ";
+}
+input[type="date"]:focus::before {
+    content: "" !important;
+}
+input[type="time"]::before{
+    color: red;
+    content: attr(placeholder) ": ";
+}
+input[type="time"]:focus::before {
+    content: attr(placeholder) ": " !important;
+} */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: red !important;
+    background-color: red !important;
+    opacity: 1 !important;
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+    color: red !important;
+    background-color: red !important;
+    opacity: 1 !important;
+}
+.date{
+    background-color: transparent !important;
+    border: none;
+    border-bottom: 1px solid red;
+    color: red;
+    outline: none !important;
+}
+.time{
+    background-color: transparent !important;
+    border: none;
+    border-bottom: 1px solid red;
+    color: red;
+    outline: none !important;
+}
+.date:active{
+    border: none !important;
+}
+.dateText{
+    color: white;
+}
+.timeText{
+    color: white;
+}
+.movie-description{
+    color: white;
+    font-size: 14px;
+}
+.save-button{
+    background-color: black !important;
+    padding: 5px 25px 5px 25px;
+    border: 2px solid red;
+    color: red;
+    border-radius: 30px;
+    font-weight: 600;
+    outline: none !important;
+}
+.save-button:hover{
+    background-color: red !important;
+    color: black;
+}
+.confirmation-text{
+    color: red;
+}
