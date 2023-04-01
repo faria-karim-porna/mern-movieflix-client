@@ -3,7 +3,7 @@ import fakeData from "../../fakeData";
 
 const AddAllData = () => {
   const handleAddAllData = () => {
-    fetch("http://localhost:5000/addAllData", {
+    fetch("https://mern-movieflix-server.vercel.app/addAllData", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -9,7 +9,7 @@ import Footer from "../Footer/Footer";
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/showMoviesInfo")
+    fetch("https://mern-movieflix-server.vercel.app/showMoviesInfo")
       .then((res) => res.json())
       .then((data) => {
         setMovies(data);
