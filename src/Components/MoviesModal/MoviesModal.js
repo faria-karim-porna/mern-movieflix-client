@@ -62,7 +62,7 @@ function handleSubmission(e){
 
         let seatStatus = {id, sid, status};
 
-        fetch('https://afternoon-taiga-18570.herokuapp.com/updateStatus', {
+        fetch('http://localhost:5000/updateStatus', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(seatStatus)
@@ -81,7 +81,7 @@ function handleSubmission(e){
             seatId: sid,
         }
 
-        fetch('https://afternoon-taiga-18570.herokuapp.com/addBookings', {
+        fetch('http://localhost:5000/addBookings', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newBooking)

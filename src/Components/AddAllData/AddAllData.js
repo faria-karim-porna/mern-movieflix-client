@@ -3,7 +3,7 @@ import fakeData from '../../fakeData';
 
 const AddAllData = () => {
     const handleAddAllData = () => {
-        fetch('https://afternoon-taiga-18570.herokuapp.com/addAllData', {
+        fetch('http://localhost:5000/addAllData', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

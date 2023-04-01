@@ -9,12 +9,12 @@ import Footer from '../Footer/Footer';
 const Movies = () => {
     const [movies, setMovies] = useState([]);
     useEffect(() => {
-        fetch('https://afternoon-taiga-18570.herokuapp.com/showMoviesInfo')
+        fetch('http://localhost:5000/showMoviesInfo')
         .then(res => res.json())
         .then(data => {
             setMovies(data);
         })
-    }, [movies])
+    }, [])
     const email = localStorage.getItem("email");
     const signOut = ()=> {
         localStorage.clear();
