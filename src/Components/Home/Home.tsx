@@ -9,7 +9,7 @@ const Home = () => {
   const email = localStorage.getItem("email");
   const signOut = () => {
     localStorage.clear();
-    window.location.reload(false);
+    window.location.reload();
   };
   return (
     <div>
