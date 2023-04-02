@@ -1,8 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+export type SeatArrangementType = { sid: string; status?: string; backgroundColor?: string; color?: string };
+
+export type MovieType = {
+  id?: number;
+  movie?: string;
+  image?: string;
+  movieDescription?: string;
+  seatsArrangement?: SeatArrangementType[];
+};
 interface UIState {
-  showModal?:boolean;
-  selectedMovieName?:string;
+  showModal?: boolean;
+  selectedMovieInfo?: MovieType;
 }
 
 const initialState: UIState = {
@@ -16,8 +25,8 @@ const UISlice = createSlice({
     setModalView(state, action: PayloadAction<boolean>) {
       state.showModal = action.payload;
     },
-    setSelectedMovie(state, action: PayloadAction<string>) {
-      state.selectedMovieName = action.payload;
+    setSelectedMovie(state, action: PayloadAction<MovieType>) {
+      state.selectedMovieInfo = action.payload;
     },
     // setSubPageView(state, action: PayloadAction<EnumSubPageView>) {
     //   state.subPageView?.push(action.payload);

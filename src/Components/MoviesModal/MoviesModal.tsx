@@ -24,22 +24,21 @@ const customStyles = {
 };
 
 Modal.setAppElement("#root");
-const MoviesModal = (props: any) => {
-  const { modalIsOpen, setIsOpen, movie } = props;
-  const seats = movie.seatsArrangement;
+const MoviesModal = () => {
+  // const { modalIsOpen, setIsOpen, movie } = props;
+  // const seats = movie.seatsArrangement;
   const email = localStorage.getItem("email");
   const name = localStorage.getItem("name");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [saved, setSaved] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
+  // function openModal() {
+  //   setIsOpen(true);
+  // }
 
   function closeModal() {
-    setIsOpen(false);
-    window.location.reload();
+    
   }
   const handleChange = (e: any) => {
     if (e.target.name == "date") {
@@ -51,51 +50,51 @@ const MoviesModal = (props: any) => {
   };
 
   function handleSubmission(e: any) {
-    console.log(movie.id);
-    for (let [key, value] of Object.entries(sessionStorage)) {
-      console.log(`${key}: ${value}`);
-      let id = movie.id;
-      let sid = value;
-      let status = "true";
+    // console.log(movie.id);
+    // for (let [key, value] of Object.entries(sessionStorage)) {
+    //   console.log(`${key}: ${value}`);
+    //   let id = movie.id;
+    //   let sid = value;
+    //   let status = "true";
 
-      let seatStatus = { id, sid, status };
+    //   let seatStatus = { id, sid, status };
 
-      fetch("http://localhost:5000/updateStatus", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(seatStatus),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
-        });
+    //   fetch("http://localhost:5000/updateStatus", {
+    //     method: "PATCH",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(seatStatus),
+    //   })
+    //     .then((res) => res.json())
+    //     .then((result) => {
+    //       console.log(result);
+    //     });
 
-      const newBooking = {
-        email: email,
-        userName: name,
-        movieName: movie.movie,
-        date: date,
-        time: time,
-        seatId: sid,
-      };
+    //   const newBooking = {
+    //     email: email,
+    //     userName: name,
+    //     movieName: movie.movie,
+    //     date: date,
+    //     time: time,
+    //     seatId: sid,
+    //   };
 
-      fetch("http://localhost:5000/addBookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newBooking),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-        });
-    }
-    setSaved(true);
-    sessionStorage.clear();
-    e.preventDefault();
+    //   fetch("http://localhost:5000/addBookings", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(newBooking),
+    //   })
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       console.log(data);
+    //     });
+    // }
+    // setSaved(true);
+    // sessionStorage.clear();
+    // e.preventDefault();
   }
   return (
     <div>
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
+      <Modal show={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
         <div className="d-flex justify-content-end">
           <CancelRoundedIcon onClick={closeModal} className="cancel-icon"></CancelRoundedIcon>
         </div>
