@@ -3,14 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { App } from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
-import $ from 'jquery';
+import $ from "jquery";
 import Popper from "popper.js";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import { Provider } from "react-redux";
+import { AppStore } from "./core/redux/reduxStore";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={AppStore}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 
