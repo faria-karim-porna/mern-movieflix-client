@@ -36,7 +36,7 @@ const MoviesModal = () => {
     shallowEqual
   );
   const dispatch = useAppDispatch();
-  // const seats = movie.seatsArrangement;
+  // const seats = store.movie?.seatsArrangement;
   const email = localStorage.getItem("email");
   const name = localStorage.getItem("name");
   const [date, setDate] = useState("");
@@ -63,7 +63,7 @@ const MoviesModal = () => {
     console.log(store.movie?.id);
     // for (let [key, value] of Object.entries(sessionStorage)) {
     //   console.log(`${key}: ${value}`);
-    //   let id = movie.id;
+    //   let id = store.movie?.id;
     //   let sid = value;
     //   let status = "true";
 
@@ -110,45 +110,66 @@ const MoviesModal = () => {
         <div className="d-flex justify-content-end">
           <CancelRoundedIcon onClick={closeModal} className="cancel-icon"></CancelRoundedIcon>
         </div>
-        <div>Hello From Modal</div>
-        {/* <div className="row">
-          <div className="col-4">
-            <img src={require(`../../images/${movie.image}`).default} className="img-fluid modal-movie-image" alt="timer" />
-          </div>
-          <div className="modal-image-border"></div>
-          <div className="col-7">
-            <div className="movie-title">{movie.movie}</div>
-            <div className="movie-description">{movie.movieDescription}</div>
-          </div>
-        </div>
-        <div className="modal-horizontal-line w-100 mt-3 mb-3"></div>
-        <form onSubmit={handleSubmission}>
-          <div className="row">
-            <div className="col-7">
-              <div className="row">
-                {seats.map((seat: any) => (
-                  <SeatIcon seat={seat}></SeatIcon>
-                ))}
+        {store.movie?.image && store.movie?.movie && store.movie?.movieDescription ? (
+          <>
+            <div className="row">
+              <div className="col-4">
+                <img src={require(`../../images/${store.movie?.image}`).default} className="img-fluid modal-movie-image" alt="timer" />
+              </div>
+              <div className="modal-image-border"></div>
+              <div className="col-7">
+                <div className="movie-title">{store.movie?.movie}</div>
+                <div className="movie-description">{store.movie?.movieDescription}</div>
               </div>
             </div>
-            <div className="col-5">
-              <label htmlFor="date" className="dateText">
-                Select a Date:
-              </label>
-              <input type="date" id="date" name="date" className="w-100 date" placeholder="MM/DD/YYYY" onChange={handleChange} required />
-              <label htmlFor="time" className="timeText mt-1">
-                Select a Time:
-              </label>
-              <input type="time" id="time" name="time" className="w-100 time" placeholder="HH:MM AM/PM" onChange={handleChange} required />
-            </div>
-          </div>
-          <div className="d-flex justify-content-center w-100">
-            <button type="submit" className="save-button">
-              Save
-            </button>
-          </div>
-          {saved && <div className="confirmation-text text-center">Successfully Saved</div>}
-        </form> */}
+            <div className="modal-horizontal-line w-100 mt-3 mb-3"></div>
+            <form onSubmit={handleSubmission}>
+              <div className="row">
+                <div className="col-7">
+                  <div className="row">
+                    {store.movie?.seatsArrangement && store.movie?.seatsArrangement?.length > 0
+                      ? store.movie?.seatsArrangement.map((seat) => (
+                          <SeatIcon sid={seat.sid} color={seat.color} backgroundColor={seat.backgroundColor} status={seat.status}></SeatIcon>
+                        ))
+                      : null}
+                  </div>
+                </div>
+                <div className="col-5">
+                  <label htmlFor="date" className="dateText">
+                    Select a Date:
+                  </label>
+                  <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    className="w-100 date"
+                    placeholder="MM/DD/YYYY"
+                    onChange={handleChange}
+                    required
+                  />
+                  <label htmlFor="time" className="timeText mt-1">
+                    Select a Time:
+                  </label>
+                  <input
+                    type="time"
+                    id="time"
+                    name="time"
+                    className="w-100 time"
+                    placeholder="HH:MM AM/PM"
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="d-flex justify-content-center w-100">
+                <button type="submit" className="save-button">
+                  Save
+                </button>
+              </div>
+              {saved && <div className="confirmation-text text-center">Successfully Saved</div>}
+            </form>
+          </>
+        ) : null}
       </Modal>
     </div>
   );

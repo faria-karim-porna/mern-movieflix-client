@@ -48,6 +48,7 @@ const Movies = () => {
           <div className="row">
             {movies.map((eachMovie) => (
               <MoviesCard
+                id={eachMovie.id}
                 movie={eachMovie.movie}
                 image={eachMovie.image}
                 movieDescription={eachMovie.movieDescription}

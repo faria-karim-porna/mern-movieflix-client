@@ -6,13 +6,11 @@ import { UIAction } from "../../core/redux/slices/UISlice";
 import { MovieType } from "../../core/types/moviesType";
 
 const MoviesCard = (props: MovieType) => {
-  const { image, movie, movieDescription, timeAndDate, seatsArrangement } = props;
+  const { id, movie, image, movieDescription, timeAndDate, seatsArrangement } = props;
   const dispatch = useAppDispatch();
-  const [modalIsOpen, setIsOpen] = React.useState(false);
   function openModal() {
     dispatch(UIAction.setModalView(true));
-    dispatch(UIAction.setSelectedMovie({ movie, image, movieDescription, timeAndDate, seatsArrangement }));
-    setIsOpen(true);
+    dispatch(UIAction.setSelectedMovie({id, movie, image, movieDescription, timeAndDate, seatsArrangement }));
   }
 
   return (
