@@ -31,7 +31,7 @@ export function App(): JSX.Element {
           </Route>
         </Switch>
       </Router>
-      <Modals />
+      {/* <Modals /> */}
     </>
   );
 }

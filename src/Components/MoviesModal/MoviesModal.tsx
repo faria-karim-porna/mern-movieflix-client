@@ -94,7 +94,7 @@ const MoviesModal = () => {
   }
   return (
     <div>
-      <Modal show={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
+      {/* <Modal show={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
         <div className="d-flex justify-content-end">
           <CancelRoundedIcon onClick={closeModal} className="cancel-icon"></CancelRoundedIcon>
         </div>
@@ -136,7 +136,7 @@ const MoviesModal = () => {
           </div>
           {saved && <div className="confirmation-text text-center">Successfully Saved</div>}
         </form>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
