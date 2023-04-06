@@ -9,10 +9,10 @@ import Footer from "../Footer/Footer";
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    fetch("https://mern-movieflix-server.vercel.app/showMoviesInfo")
+    fetch("https://mern-movieflix-server-production.up.railway.app/showMoviesInfo")
       .then((res) => res.json())
       .then((data) => {
-        setMovies(data);
+        setMovies(data.allMovies);
       });
   }, []);
   const email = localStorage.getItem("email");

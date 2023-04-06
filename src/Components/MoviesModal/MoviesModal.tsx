@@ -60,7 +60,7 @@ const MoviesModal = (props: any) => {
 
       let seatStatus = { id, sid, status };
 
-      fetch("https://mern-movieflix-server.vercel.app/updateStatus", {
+      fetch("https://mern-movieflix-server-production.up.railway.app/updateStatus", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(seatStatus),
@@ -79,7 +79,7 @@ const MoviesModal = (props: any) => {
         seatId: sid,
       };
 
-      fetch("https://mern-movieflix-server.vercel.app/addBookings", {
+      fetch("https://mern-movieflix-server-production.up.railway.app/addBookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newBooking),
