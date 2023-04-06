@@ -1,14 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { MovieType } from "../../types/moviesType";
 
-export type SeatArrangementType = { sid: string; status?: string; backgroundColor?: string; color?: string };
-
-export type MovieType = {
-  id?: number;
-  movie?: string;
-  image?: string;
-  movieDescription?: string;
-  seatsArrangement?: SeatArrangementType[];
-};
 interface UIState {
   showModal?: boolean;
   selectedMovieInfo?: MovieType;
