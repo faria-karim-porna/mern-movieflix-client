@@ -9,23 +9,6 @@ import { useAppDispatch, useAppSelector } from "../../core/redux/reduxStore";
 import { shallowEqual } from "react-redux";
 import { UIAction } from "../../core/redux/slices/UISlice";
 
-const customStyles = {
-  overlay: {
-    backgroundColor: "rgba(9, 1, 1, 0.878)",
-  },
-  content: {
-    backgroundColor: "black",
-    border: "1px solid red",
-    width: "450px",
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
-
 const MoviesModal = () => {
   // const { modalIsOpen, setIsOpen, movie } = props;
   const store = useAppSelector(
@@ -42,10 +25,6 @@ const MoviesModal = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [saved, setSaved] = useState(false);
-
-  // function openModal() {
-  //   setIsOpen(true);
-  // }
 
   function closeModal() {
     dispatch(UIAction.setModalView(false));
@@ -103,9 +82,8 @@ const MoviesModal = () => {
     e.preventDefault();
   }
 
-  // style={customStyles}
   return (
-    <div>
+    <>
       <Modal show={store.isModalOpen}>
         <div className="d-flex justify-content-end">
           <CancelRoundedIcon onClick={closeModal} className="cancel-icon"></CancelRoundedIcon>
@@ -129,7 +107,12 @@ const MoviesModal = () => {
                   <div className="row">
                     {store.movie?.seatsArrangement && store.movie?.seatsArrangement?.length > 0
                       ? store.movie?.seatsArrangement.map((seat) => (
-                          <SeatIcon sid={seat.sid} color={seat.color} backgroundColor={seat.backgroundColor} status={seat.status}></SeatIcon>
+                          <SeatIcon
+                            sid={seat.sid}
+                            color={seat.color}
+                            backgroundColor={seat.backgroundColor}
+                            status={seat.status}
+                          ></SeatIcon>
                         ))
                       : null}
                   </div>
@@ -171,7 +154,7 @@ const MoviesModal = () => {
           </>
         ) : null}
       </Modal>
-    </div>
+    </>
   );
 };
 
