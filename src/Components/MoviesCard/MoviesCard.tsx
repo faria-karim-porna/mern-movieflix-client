@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./MoviesCard.css";
 import MoviesModal from "../MoviesModal/MoviesModal";
+import { useAppDispatch } from "../../core/redux/reduxStore";
+import { UIAction } from "../../core/redux/slices/UISlice";
 
 const MoviesCard = (props: any) => {
   const { movie } = props;
+  const dispatch = useAppDispatch();
   const [modalIsOpen, setIsOpen] = React.useState(false);
   function openModal() {
+    dispatch(UIAction.setModalView(true));
     setIsOpen(true);
   }
 
