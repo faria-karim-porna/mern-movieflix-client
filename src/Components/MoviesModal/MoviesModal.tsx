@@ -40,46 +40,43 @@ const MoviesModal = () => {
 
   function handleSubmission(e: any) {
     console.log(store.movie?.id);
-    // for (let [key, value] of Object.entries(sessionStorage)) {
-    //   console.log(`${key}: ${value}`);
-    //   let id = store.movie?.id;
-    //   let sid = value;
-    //   let status = "true";
+    for (let [key, value] of Object.entries(sessionStorage)) {
+      const id = store.movie?.id ? store.movie?.id : 0;
+      const sid = value;
+      const status = "true";
 
-    //   let seatStatus = { id, sid, status };
+      const seatStatus = { id, sid, status };
+      fetch("https://mern-movieflix-server-production.up.railway.app/updateStatus", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(seatStatus),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+        });
 
-    //   fetch("https://mern-movieflix-server-production.up.railway.app/updateStatus", {
-    //     method: "PATCH",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(seatStatus),
-    //   })
-    //     .then((res) => res.json())
-    //     .then((result) => {
-    //       console.log(result);
-    //     });
-
-    //   const newBooking = {
-    //     email: email,
-    //     userName: name,
-    //     movieName: movie.movie,
-    //     date: date,
-    //     time: time,
-    //     seatId: sid,
-    //   };
-
-    //   fetch("https://mern-movieflix-server-production.up.railway.app/addBookings", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(newBooking),
-    //   })
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       console.log(data);
-    //     });
-    // }
+      const newBooking = {
+        email: email,
+        userName: name,
+        movieName: store.movie?.movie ? store.movie.movie : "",
+        date: date,
+        time: time,
+        seatId: sid,
+      };
+      console.log("newBooking", newBooking);
+      fetch("https://mern-movieflix-server-production.up.railway.app/addBookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newBooking),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+    }
     setSaved(true);
     sessionStorage.clear();
-    e.preventDefault();
   }
 
   return (
@@ -101,56 +98,42 @@ const MoviesModal = () => {
               </div>
             </div>
             <div className="modal-horizontal-line w-100 mt-3 mb-3"></div>
-            <form onSubmit={handleSubmission}>
-              <div className="row">
-                <div className="col-7">
-                  <div className="row">
-                    {store.movie?.seatsArrangement && store.movie?.seatsArrangement?.length > 0
-                      ? store.movie?.seatsArrangement.map((seat) => (
-                          <SeatIcon
-                            sid={seat.sid}
-                            color={seat.color}
-                            backgroundColor={seat.backgroundColor}
-                            status={seat.status}
-                          ></SeatIcon>
-                        ))
-                      : null}
-                  </div>
-                </div>
-                <div className="col-5">
-                  <label htmlFor="date" className="dateText">
-                    Select a Date:
-                  </label>
-                  <input
-                    type="date"
-                    id="date"
-                    name="date"
-                    className="w-100 date"
-                    placeholder="MM/DD/YYYY"
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor="time" className="timeText mt-1">
-                    Select a Time:
-                  </label>
-                  <input
-                    type="time"
-                    id="time"
-                    name="time"
-                    className="w-100 time"
-                    placeholder="HH:MM AM/PM"
-                    onChange={handleChange}
-                    required
-                  />
+
+            <div className="row">
+              <div className="col-7">
+                <div className="row">
+                  {store.movie?.seatsArrangement && store.movie?.seatsArrangement?.length > 0
+                    ? store.movie?.seatsArrangement.map((seat) => (
+                        <SeatIcon sid={seat.sid} color={seat.color} backgroundColor={seat.backgroundColor} status={seat.status}></SeatIcon>
+                      ))
+                    : null}
                 </div>
               </div>
-              <div className="d-flex justify-content-center w-100">
-                <button type="submit" className="save-button">
-                  Save
-                </button>
+              <div className="col-5">
+                <label htmlFor="date" className="dateText">
+                  Select a Date:
+                </label>
+                <input type="date" id="date" name="date" className="w-100 date" placeholder="MM/DD/YYYY" onChange={handleChange} required />
+                <label htmlFor="time" className="timeText mt-1">
+                  Select a Time:
+                </label>
+                <input
+                  type="time"
+                  id="time"
+                  name="time"
+                  className="w-100 time"
+                  placeholder="HH:MM AM/PM"
+                  onChange={handleChange}
+                  required
+                />
               </div>
-              {saved && <div className="confirmation-text text-center">Successfully Saved</div>}
-            </form>
+            </div>
+            <div className="d-flex justify-content-center w-100">
+              <button className="save-button" onClick={handleSubmission}>
+                Save
+              </button>
+            </div>
+            {saved && <div className="confirmation-text text-center">Successfully Saved</div>}
           </>
         ) : null}
       </Modal>
