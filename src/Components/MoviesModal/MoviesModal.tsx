@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./MoviesModal.css";
-import Modal from "react-modal";
+import { Modal } from "react-bootstrap";
 import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
 
 import SeatIcon from "../SeatIcon/SeatIcon";
 import movies from "../../fakeData/movies";
+import { useAppDispatch, useAppSelector } from "../../core/redux/reduxStore";
+import { shallowEqual } from "react-redux";
+import { UIAction } from "../../core/redux/slices/UISlice";
 
 const customStyles = {
   overlay: {
@@ -23,23 +26,29 @@ const customStyles = {
   },
 };
 
-Modal.setAppElement("#root");
-const MoviesModal = (props: any) => {
-  const { modalIsOpen, setIsOpen, movie } = props;
-  const seats = movie.seatsArrangement;
+const MoviesModal = () => {
+  // const { modalIsOpen, setIsOpen, movie } = props;
+  const store = useAppSelector(
+    (state) => ({
+      movie: state.UI.selectedMovieInfo,
+      isModalOpen: state.UI.showModal,
+    }),
+    shallowEqual
+  );
+  const dispatch = useAppDispatch();
+  // const seats = movie.seatsArrangement;
   const email = localStorage.getItem("email");
   const name = localStorage.getItem("name");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [saved, setSaved] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
+  // function openModal() {
+  //   setIsOpen(true);
+  // }
 
   function closeModal() {
-    setIsOpen(false);
-    window.location.reload();
+    dispatch(UIAction.setModalView(false));
   }
   const handleChange = (e: any) => {
     if (e.target.name == "date") {
@@ -51,55 +60,58 @@ const MoviesModal = (props: any) => {
   };
 
   function handleSubmission(e: any) {
-    console.log(movie.id);
-    for (let [key, value] of Object.entries(sessionStorage)) {
-      console.log(`${key}: ${value}`);
-      let id = movie.id;
-      let sid = value;
-      let status = "true";
+    console.log(store.movie?.id);
+    // for (let [key, value] of Object.entries(sessionStorage)) {
+    //   console.log(`${key}: ${value}`);
+    //   let id = movie.id;
+    //   let sid = value;
+    //   let status = "true";
 
-      let seatStatus = { id, sid, status };
+    //   let seatStatus = { id, sid, status };
 
-      fetch("https://mern-movieflix-server-production.up.railway.app/updateStatus", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(seatStatus),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
-        });
+    //   fetch("https://mern-movieflix-server-production.up.railway.app/updateStatus", {
+    //     method: "PATCH",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(seatStatus),
+    //   })
+    //     .then((res) => res.json())
+    //     .then((result) => {
+    //       console.log(result);
+    //     });
 
-      const newBooking = {
-        email: email,
-        userName: name,
-        movieName: movie.movie,
-        date: date,
-        time: time,
-        seatId: sid,
-      };
+    //   const newBooking = {
+    //     email: email,
+    //     userName: name,
+    //     movieName: movie.movie,
+    //     date: date,
+    //     time: time,
+    //     seatId: sid,
+    //   };
 
-      fetch("https://mern-movieflix-server-production.up.railway.app/addBookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newBooking),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-        });
-    }
+    //   fetch("https://mern-movieflix-server-production.up.railway.app/addBookings", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(newBooking),
+    //   })
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       console.log(data);
+    //     });
+    // }
     setSaved(true);
     sessionStorage.clear();
     e.preventDefault();
   }
+
+  // style={customStyles}
   return (
     <div>
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
+      <Modal show={store.isModalOpen}>
         <div className="d-flex justify-content-end">
           <CancelRoundedIcon onClick={closeModal} className="cancel-icon"></CancelRoundedIcon>
         </div>
-        <div className="row">
+        <div>Hello From Modal</div>
+        {/* <div className="row">
           <div className="col-4">
             <img src={require(`../../images/${movie.image}`).default} className="img-fluid modal-movie-image" alt="timer" />
           </div>
@@ -136,7 +148,7 @@ const MoviesModal = (props: any) => {
             </button>
           </div>
           {saved && <div className="confirmation-text text-center">Successfully Saved</div>}
-        </form>
+        </form> */}
       </Modal>
     </div>
   );

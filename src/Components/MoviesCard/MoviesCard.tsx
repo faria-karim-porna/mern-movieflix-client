@@ -23,7 +23,6 @@ const MoviesCard = (props: MovieType) => {
             <img src={require(`../../images/${image}`).default} className="img-fluid movie-image" alt="timer" />
             <div className="movies-name text-center">{movie}</div>
           </div>
-          {/* <MoviesModal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} movie={props}></MoviesModal> */}
         </>
       ) : null}
     </>
