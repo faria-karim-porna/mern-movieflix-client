@@ -1,21 +1,28 @@
 import React, { useState } from "react";
 import "./MoviesCard.css";
 import MoviesModal from "../MoviesModal/MoviesModal";
+import { useAppDispatch } from "../../core/redux/reduxStore";
+import { UIAction } from "../../core/redux/slices/UISlice";
+import { MovieType } from "../../core/types/moviesType";
 
-const MoviesCard = (props: any) => {
-  const { movie } = props;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+const MoviesCard = (props: MovieType) => {
+  const { id, movie, image, movieDescription, timeAndDate, seatsArrangement } = props;
+  const dispatch = useAppDispatch();
   function openModal() {
-    setIsOpen(true);
+    dispatch(UIAction.setModalView(true));
+    dispatch(UIAction.setSelectedMovie({id, movie, image, movieDescription, timeAndDate, seatsArrangement }));
   }
 
   return (
     <>
-      <div className="col-md-2 movies-column" onClick={openModal}>
-        <img src={require(`../../images/${movie.image}`).default} className="img-fluid movie-image" alt="timer" />
-        <div className="movies-name text-center">{movie.movie}</div>
-      </div>
-      <MoviesModal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} movie={movie}></MoviesModal>
+      {image && movie ? (
+        <>
+          <div className="col-md-2 movies-column" onClick={openModal}>
+            <img src={require(`../../images/${image}`).default} className="img-fluid movie-image" alt="timer" />
+            <div className="movies-name text-center">{movie}</div>
+          </div>
+        </>
+      ) : null}
     </>
   );
 };

@@ -6,13 +6,16 @@ import { useState } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import { MovieType } from "../../core/types/moviesType";
+
 const Movies = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<MovieType[]>([]);
   useEffect(() => {
-    fetch("http://localhost:5000/showMoviesInfo")
+    fetch("https://mern-movieflix-server-production.up.railway.app/showMoviesInfo")
       .then((res) => res.json())
       .then((data) => {
-        setMovies(data);
+        console.log("data", data);
+        setMovies(data.allMovies);
       });
   }, []);
   const email = localStorage.getItem("email");
@@ -43,8 +46,15 @@ const Movies = () => {
             )}
           </div>
           <div className="row">
-            {movies.map((movie) => (
-              <MoviesCard movie={movie}></MoviesCard>
+            {movies.map((eachMovie) => (
+              <MoviesCard
+                id={eachMovie.id}
+                movie={eachMovie.movie}
+                image={eachMovie.image}
+                movieDescription={eachMovie.movieDescription}
+                timeAndDate={eachMovie.timeAndDate}
+                seatsArrangement={eachMovie.seatsArrangement}
+              ></MoviesCard>
             ))}
           </div>
         </div>

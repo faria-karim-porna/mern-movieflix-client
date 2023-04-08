@@ -7,6 +7,7 @@ import Movies from "./Components/Movies/Movies";
 import AddAllData from "./Components/AddAllData/AddAllData";
 import Login from "./Components/Login/Login";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import MoviesModal from "./Components/MoviesModal/MoviesModal";
 
 export function App(): JSX.Element {
   return (
@@ -30,6 +31,7 @@ export function App(): JSX.Element {
           </Route>
         </Switch>
       </Router>
+      <MoviesModal/>
     </>
   );
 }

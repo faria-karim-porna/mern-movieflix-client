@@ -1,20 +1,31 @@
-.cancel-icon{
+.cancel-icon {
     color: red;
 }
-.modal-movie-image{
+
+.modal-movie-image {
     height: 185px !important;
 }
-.modal-image-border{
+
+.modal-image-border {
     border-left: 1px solid red;
     height: 175px;
 }
-.movie-title{
+
+.movie-title {
     font-size: 25px;
     color: red;
 }
-.modal-horizontal-line{
+
+.modal-horizontal-line {
     border-bottom: 1px solid red;
 }
+
+.modal-content {
+    background-color: black !important;
+    border: 1px solid red !important;
+    padding: 20px;
+}
+
 /* input[type="date"]::before{
     color: red;
     content: attr(placeholder) ": ";
@@ -34,39 +45,47 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: red !important;
     opacity: 1 !important;
 }
+
 input[type="time"]::-webkit-calendar-picker-indicator {
     color: red !important;
     background-color: red !important;
     opacity: 1 !important;
 }
-.date{
+
+.date {
     background-color: transparent !important;
     border: none;
     border-bottom: 1px solid red;
     color: red;
     outline: none !important;
 }
-.time{
+
+.time {
     background-color: transparent !important;
     border: none;
     border-bottom: 1px solid red;
     color: red;
     outline: none !important;
 }
-.date:active{
+
+.date:active {
     border: none !important;
 }
-.dateText{
+
+.dateText {
     color: white;
 }
-.timeText{
+
+.timeText {
     color: white;
 }
-.movie-description{
+
+.movie-description {
     color: white;
     font-size: 14px;
 }
-.save-button{
+
+.save-button {
     background-color: black !important;
     padding: 5px 25px 5px 25px;
     border: 2px solid red;
@@ -75,10 +94,12 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-weight: 600;
     outline: none !important;
 }
-.save-button:hover{
+
+.save-button:hover {
     background-color: red !important;
     color: black;
 }
-.confirmation-text{
+
+.confirmation-text {
     color: red;
 }
