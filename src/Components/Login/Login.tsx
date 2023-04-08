@@ -15,6 +15,8 @@ interface LoginInterface {
   email: string;
   password: string;
   photo: string;
+  error?: string;
+  success?: boolean;
 }
 
 function Login() {
@@ -46,7 +48,7 @@ function Login() {
     });
   };
 
-  const handleResponse = (res: any, redirect: boolean) => {
+  const handleResponse = (res: LoginInterface, redirect: boolean) => {
     setUser(res);
     localStorage.setItem("name", res.name);
     localStorage.setItem("email", res.email);
