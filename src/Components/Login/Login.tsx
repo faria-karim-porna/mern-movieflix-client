@@ -2,9 +2,24 @@ import React, { useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { initializeLoginFramework, handleGoogleSignIn, handleSignOut } from "./loginManager";
 import "./Login.css";
+
+type LocationState = {
+  from: {
+    pathname: string;
+  };
+};
+
+interface LoginInterface {
+  isSignedIn: boolean;
+  name: string;
+  email: string;
+  password: string;
+  photo: string;
+}
+
 function Login() {
   const [newUser, setNewUser] = useState(false);
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<LoginInterface>({
     isSignedIn: false,
     name: "",
     email: "",
@@ -16,7 +31,8 @@ function Login() {
 
   const history = useHistory();
   const location = useLocation();
-  let { from } = location.state || { from: { pathname: "/" } };
+
+  let { from } = location.state ? (location.state as LocationState) : { from: { pathname: "/" } };
 
   const googleSignIn = () => {
     handleGoogleSignIn().then((res) => {
@@ -30,7 +46,7 @@ function Login() {
     });
   };
 
-  const handleResponse = (res, redirect) => {
+  const handleResponse = (res: any, redirect: boolean) => {
     setUser(res);
     localStorage.setItem("name", res.name);
     localStorage.setItem("email", res.email);
