@@ -2,8 +2,10 @@ import { AnyAction, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createSelectorHook, TypedUseSelectorHook, useDispatch } from "react-redux";
 // import { StorageBreif } from "../localStorage/StorageBreif";
 import { UIReducer } from "./slices/UISlice";
+import { ApiReducer } from "./thunk/apiThunk";
 
 const RootReducer = combineReducers({
+  Api: ApiReducer,
   UI: UIReducer,
 });
 
