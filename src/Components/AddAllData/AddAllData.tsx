@@ -3,7 +3,7 @@ import fakeData from "../../fakeData";
 
 const AddAllData = () => {
   const handleAddAllData = () => {
-    fetch("https://mern-movieflix-server-production.up.railway.app/addAllData", {
+    fetch("https://vast-pear-raven-slip.cyclic.app/addAllData", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

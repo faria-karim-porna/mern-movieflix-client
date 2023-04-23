@@ -46,7 +46,7 @@ const MoviesModal = () => {
       const status = "true";
 
       const seatStatus = { id, sid, status };
-      fetch("https://mern-movieflix-server-production.up.railway.app/updateStatus", {
+      fetch("https://vast-pear-raven-slip.cyclic.app/updateStatus", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(seatStatus),
@@ -65,7 +65,7 @@ const MoviesModal = () => {
         seatId: sid,
       };
       console.log("newBooking", newBooking);
-      fetch("https://mern-movieflix-server-production.up.railway.app/addBookings", {
+      fetch("https://vast-pear-raven-slip.cyclic.app/addBookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newBooking),

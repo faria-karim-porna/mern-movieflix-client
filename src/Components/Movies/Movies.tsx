@@ -11,7 +11,7 @@ import { MovieType } from "../../core/types/moviesType";
 const Movies = () => {
   const [movies, setMovies] = useState<MovieType[]>([]);
   useEffect(() => {
-    fetch("https://mern-movieflix-server-production.up.railway.app/showMoviesInfo")
+    fetch("https://vast-pear-raven-slip.cyclic.app/showMoviesInfo")
       .then((res) => res.json())
       .then((data) => {
         console.log("data", data);
