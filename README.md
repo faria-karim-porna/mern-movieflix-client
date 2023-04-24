@@ -26,6 +26,10 @@
 
 * React Router
 
+* Redux Toolkit
+
+* TypeScript
+
 * Node.js
 
 * MongoDB
@@ -34,7 +38,7 @@
 
 * Firebase Hosting
 
-* Heroku
+* Vercel
 
 * Html
 

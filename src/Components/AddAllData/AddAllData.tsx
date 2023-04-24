@@ -3,7 +3,7 @@ import fakeData from "../../fakeData";
 
 const AddAllData = () => {
   const handleAddAllData = () => {
-    fetch("https://vast-pear-raven-slip.cyclic.app/addAllData", {
+    fetch("https://mern-movieflix-server.vercel.app/addAllData", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
