@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MoviesModal.css";
 import { Modal } from "react-bootstrap";
 import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
@@ -22,11 +22,14 @@ const MoviesModal = () => {
   // const seats = store.movie?.seatsArrangement;
   const email = localStorage.getItem("email");
   const name = localStorage.getItem("name");
+  const [isStatusApiComplete, setIsStatusApiComplete] = useState(false);
+  const [isBookingsApiComplete, setIsBookingsApiComplete] = useState(false);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [saved, setSaved] = useState(false);
 
   function closeModal() {
+    sessionStorage.clear();
     dispatch(UIAction.setModalView(false));
   }
   const handleChange = (e: any) => {
@@ -39,7 +42,8 @@ const MoviesModal = () => {
   };
 
   function handleSubmission(e: any) {
-    console.log(store.movie?.id);
+    let counterForSeat = 0;
+    let counterForBookings = 0;
     for (let [key, value] of Object.entries(sessionStorage)) {
       const id = store.movie?.id ? store.movie?.id : 0;
       const sid = value;
@@ -53,7 +57,10 @@ const MoviesModal = () => {
       })
         .then((res) => res.json())
         .then((result) => {
-          console.log(result);
+          counterForSeat = counterForSeat + 1;
+          if (counterForSeat === Object.entries(sessionStorage).length) {
+            setIsStatusApiComplete(true);
+          }
         });
 
       const newBooking = {
@@ -72,12 +79,24 @@ const MoviesModal = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          counterForBookings = counterForBookings + 1;
+          if (counterForBookings === Object.entries(sessionStorage).length) {
+            setIsBookingsApiComplete(true);
+          }
         });
     }
-    setSaved(true);
-    sessionStorage.clear();
   }
+
+  useEffect(() => {
+    if (isStatusApiComplete && isBookingsApiComplete) {
+      setSaved(true);
+      sessionStorage.clear();
+      setTimeout(() => {
+        dispatch(UIAction.setModalView(false));
+        window.location.reload();
+      }, 1000);
+    }
+  }, [isStatusApiComplete, isBookingsApiComplete]);
 
   return (
     <>
